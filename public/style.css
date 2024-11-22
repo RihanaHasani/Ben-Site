@@ -1,0 +1,215 @@
+nav #navbarTogglerDemo03 ul li a:hover{
+  text-decoration: none;
+color: black;
+}
+nav a:hover{
+  text-decoration:underline;
+  color: rgb(224, 73, 73);
+}
+/* li a::before{
+  content: '';
+  position: absolute;
+  top:0;
+  right:-17px;
+  width: 1px;
+  height:100%;
+  background-color: rgb(30,39,50,0.12);
+  margin-right:10px;
+
+} */
+li .Log:hover{
+ background-color: rgb(28, 232, 232);
+}
+
+footer {
+  text-align: center;
+  padding: 3px;
+  background-color: DarkSalmon;
+  color: white;
+}
+footer a:link{
+text-decoration:none;
+/* background-color: transparent; */
+}
+footer a:hover {
+  /* color: red;
+  background-color: transparent; */
+  text-decoration: underline;
+}
+
+section .freelance a:link {
+  text-decoration:none;
+}
+
+section .freelance a:hover {
+  text-decoration: underline;
+}
+
+footer {
+  text-align: center;
+  padding: 15px;
+  background-color: #333;
+  color: white;
+
+  width: 100%;
+  bottom: 0;
+}
+
+ 
+/* @media (min-width:960px){
+  .container-fixed{
+      max-width:840px
+  }
+} */
+
+nav{
+    background-color: aqua;
+    padding:30px 60px;
+    display: flex;
+    justify-content: space-between;
+}
+
+nav ul{
+    display:flex;
+    justify-content: space-around;
+    align-items: center;
+}
+nav li{
+    list-style: none;
+}
+
+nav li a{
+
+  text-decoration: none;
+  font-weight: bold;
+  padding:5px 8px;
+}
+
+/* جلوگیری از تغییر رنگ پس‌زمینه در حالت hover */
+.navbar .nav-link:hover {
+    background-color: transparent !important;  /* پس‌زمینه شفاف برای حالت hover */
+    color:black;  /* رنگ متن را به حالت اولیه برگردان */
+  }
+  .navbar .btn-sm {
+    font-size: 10px; 
+   
+  }
+  .navbar{
+    font-size: 11px; 
+  }
+
+  
+
+  /* user dashboard */
+
+  /* Reset default margin and padding */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Arial', sans-serif;
+  direction: ltr;
+  background-color: #f4f4f9;
+  color: #333;
+  margin: 0;
+}
+
+header {
+  background-color: #6531d4;
+  color: white;
+  padding: 10px 0;
+}
+
+.header-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px;
+}
+
+header h1 {
+  font-size: 24px;
+}
+
+nav{
+  background: none
+}
+nav ul {
+  list-style: none;
+ 
+}
+
+nav ul li {
+  display: inline;
+  margin: 0 10px;
+}
+
+nav ul li a {
+  color: white;
+  text-decoration: none;
+  font-size: 18px;
+ 
+}
+
+nav ul li a:hover {
+  text-decoration: underline;
+}
+
+main {
+  padding: 20px;
+}
+
+.user-info {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.profile-image {
+  flex: 1;
+  text-align: center;
+}
+
+.profile-image img {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  border: 3px solid #534caf;
+}
+
+.user-details {
+  flex: 3;
+  padding: 0 20px;
+}
+
+.user-details h2 {
+  font-size: 22px;
+  margin-bottom: 15px;
+}
+
+.user-details p {
+  font-size: 18px;
+  margin: 10px 0;
+}
+
+.user-details strong {
+  font-weight: bold;
+}
+
+
+
+/* Small screens (e.g., mobile devices) */
+@media (max-width: 768px) {
+  .user-info {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .user-details {
+    margin-top: 20px;
+  }
+}
+

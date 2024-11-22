@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>User Dashboard</title>
+  <link rel="stylesheet" href="/style.css">
+</head>
+
+<body>
+  <header>
+    <div class="header-container">
+      <h1>Welcome, <%= user.firstName %>!</h1>
+      <nav>
+        <ul>
+          <li><a href="/">Home</a></li>
+          <li><a href="/dashboard">Dashboard</a></li>
+          <li><a href="/logout">Logout</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <div class="user-info">
+      <!-- Profile image section -->
+      <div class="profile-image">
+        <img src="<%= user.profileImage || '/uploads/default-profile.jpg' %>" alt="Profile Picture" />
+
+      </div>
+
+      <!-- User details -->
+      <div class="user-details">
+        <h2>Account Information</h2>
+        <p><strong>First Name:</strong>
+          <%= user.firstName %>
+        </p>
+        <p><strong>Last Name:</strong>
+          <%= user.lastName %>
+        </p>
+        <p><strong>Email:</strong>
+          <%= user.email %>
+        </p>
+        <p><strong>Role:</strong>
+          <%= user.role %>
+        </p>
+
+        <section>
+          <h3>Additional Features</h3>
+          <p>Here you can view and update additional details related to your account.</p>
+        </section>
+      </div>
+
+      <!-- Form to upload profile image -->
+      <form action='/upload-profile-image' method="POST" enctype="multipart/form-data">
+        <label for="profileImage">Upload Profile Image:</label>
+        <input type="file" name="profileImage" id="profileImage" accept="image/*" required>
+        <button type="submit">Upload</button>
+      </form>
+    </div>
+  </main>
+
+  <footer style="position:absolute;margin-bottom:0px">
+    <p>&copy; 2024 Your Website</p>
+  </footer>
+
+  <script>
+    document.querySelector('form').addEventListener('submit', function(event) {
+      var fileInput = document.getElementById('profileImage');
+      if (!fileInput.files.length) {
+        alert('Please select a file to upload');
+        event.preventDefault();  // جلوگیری از ارسال فرم
+      }
+    });
+  </script>
+</body>
+
+</html>
