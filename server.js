@@ -16,9 +16,7 @@ const initializePassport = require('./passport-config');
 const multer = require('multer');
 const path = require('path');
 
-
 initializePassport(passport);
-
 
 app.use(session({
   secret: process.env.SESSION_SECRET,
@@ -123,6 +121,7 @@ app.get('/logout', (req, res) => {
     res.redirect('/login');
   });
 });
+
 
 function checkAuthenticated(req, res, next) {
   if (req.isAuthenticated()) {
