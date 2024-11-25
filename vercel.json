@@ -12,9 +12,9 @@
       "dest": "/server.js"
     }
   ],
-  "env": {
+ "env": {
     "NODE_ENV": "production",
-    "DATABASE_URL": "mongodb+srv://username:password@cluster.mongodb.net/mybrary?retryWrites=true&w=majority",
+    "DB_URI": "mongodb+srv://rianahm60:J9xNxoVcp3AsJRKn@cluster0.e9yst.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0",
     "SESSION_SECRET": "fZ8#91&vKbqG2w5@"
   }
 }
