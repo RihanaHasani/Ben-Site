@@ -12,7 +12,7 @@ const methodOverride = require('method-override');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const User = require('./models/user');
-const initializePassport = require('./passport-config');  // مسیر صحیح فایل تنظیمات Passport
+const initializePassport = require('./passport-config'); 
 const multer = require('multer');
 const path = require('path');
 
@@ -51,17 +51,37 @@ app.use(bodyParser.urlencoded({ limit: '10mb', extended: false }));
 
 
 
-// اتصال به MongoDB
-mongoose.connect(process.env.DATABASE_URL);
-const db = mongoose.connection;
-db.on('error', error => console.error(error));
-db.once('open', () => console.log('Connected to Mongoose'));
+// اتصال به MongoDB atlas
+
+const uri = process.env.DB_URI;
+
+mongoose.connect(process.env.DB_URI, {
+  ssl: true,
+})
+.then(() => {
+  console.log('Connected to MongoDB!');
+})
+.catch((err) => {
+  console.error('Error connecting to MongoDB:', err);
+});
+
+
+
+
 
 // سایر تنظیمات Passport و Session
 app.use(flash());
 app.use(methodOverride('_method'));
 // مسیر استاتیک برای فولدر uploads
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
+
+// صفحه اصلی همیشه باید نمایش داده شود، چه کاربر وارد شده باشد و چه نه
+app.get('/', (req, res) => {
+  res.render('index.ejs', { user: req.user }); // همیشه صفحه اصلی نمایش داده می‌شود
+});
+
+
+
 
 // روت‌ها
 app.get('/', checkAuthenticated, (req, res) => {
@@ -187,5 +207,9 @@ app.post('/upload-profile-image', checkAuthenticated, upload.single('profileImag
 });
 
 
-// شروع سرور
-app.listen(process.env.PORT || 3000);
+app.listen(process.env.PORT || 3000, () => {
+  console.log(`Server running on port ${process.env.PORT || 3000}`);
+});
+
+
+

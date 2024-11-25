@@ -1,7 +1,7 @@
 {
   "name": "mybrary",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
     "start": "nodemon server.js"
   },
@@ -19,7 +19,8 @@
     "express-flash": "^0.0.2",
     "express-session": "^1.18.1",
     "method-override": "^3.0.0",
-    "mongoose": "^8.8.1",
+    "mongodb": "^6.11.0",
+    "mongoose": "^8.8.2",
     "multer": "^1.4.5-lts.1",
     "nodemon": "^3.1.7",
     "passport": "^0.7.0",
