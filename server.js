@@ -40,20 +40,10 @@ function checkRole(role) {
         return res.status(403).send('Forbidden'); // دسترسی ممنوع برای کسانی که نقش صحیح را ندارند
       }
     }
-    res.redirect('/login'); // اگر کاربر وارد نشده باشد
-  };
-}
 
-// تنظیمات اولیه
 app.set('view engine', 'ejs');
 app.use(express.static('public'));
 app.use(bodyParser.urlencoded({ limit: '10mb', extended: false }));
-
-
-
-// اتصال به MongoDB atlas
-
-const uri = process.env.DB_URI;
 
 mongoose.connect(process.env.DB_URI, {
   ssl: true,
@@ -65,25 +55,17 @@ mongoose.connect(process.env.DB_URI, {
   console.error('Error connecting to MongoDB:', err);
 });
 
-
-
-
-
-// سایر تنظیمات Passport و Session
+    
 app.use(flash());
 app.use(methodOverride('_method'));
-// مسیر استاتیک برای فولدر uploads
+
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
-// صفحه اصلی همیشه باید نمایش داده شود، چه کاربر وارد شده باشد و چه نه
 app.get('/', (req, res) => {
   res.render('index.ejs', { user: req.user }); // همیشه صفحه اصلی نمایش داده می‌شود
 });
 
-
-
-
-// روت‌ها
+    
 app.get('/', checkAuthenticated, (req, res) => {
   res.render('index.ejs', { user: req.user });
 });
@@ -115,7 +97,7 @@ app.post('/register', checkNotAuthenticated, async (req, res) => {
       lastName,
       email,
       password: hashedPassword,
-      role: role || 'user', // نقش به صورت پیش‌فرض 'user'
+      role: role || 'user',
     });
     await newUser.save();
     res.redirect('/login');
@@ -156,19 +138,16 @@ function checkNotAuthenticated(req, res, next) {
   next();
 }
 
-
-
-// تنظیمات Multer برای ذخیره‌سازی تصاویر
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
-    cb(null, 'public/uploads'); // مسیر ذخیره‌سازی فایل‌ها
+    cb(null, 'public/uploads'); 
   },
   filename: (req, file, cb) => {
-    cb(null, Date.now() + path.extname(file.originalname)); // نام فایل با استفاده از زمان جاری و پسوند فایل
+    cb(null, Date.now() + path.extname(file.originalname)); 
   }
 });
 
-// فقط اجازه آپلود فایل‌های تصویری را بدهید
+
 const upload = multer({
   storage: storage,
   fileFilter: (req, file, cb) => {
@@ -188,14 +167,13 @@ app.post('/upload-profile-image', checkAuthenticated, upload.single('profileImag
     const profileImagePath = `public/uploads/${req.file.filename}`;
 
     try {
-      // به‌روزرسانی مسیر تصویر پروفایل در دیتابیس
+     
       const updatedUser = await User.findByIdAndUpdate(
         req.user._id, 
         { profileImage: profileImagePath },
         { new: true }
       );
 
-      // هدایت کاربر به داشبورد
       res.redirect('/dashboard');
     } catch (err) {
       console.error('Error updating profile image:', err);
