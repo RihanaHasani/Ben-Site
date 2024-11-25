@@ -1,5 +1,5 @@
 if (process.env.NODE_ENV !== 'production') {
-  require('dotenv').config();  // بارگذاری متغیرهای محیطی از فایل .env
+  require('dotenv').config();  
 }
 
 const express = require('express');
@@ -16,28 +16,28 @@ const initializePassport = require('./passport-config');
 const multer = require('multer');
 const path = require('path');
 
-// پیکربندی Passport
+
 initializePassport(passport);
 
-// استفاده از express-session پیش از Passport
+
 app.use(session({
   secret: process.env.SESSION_SECRET,
   resave: false,
   saveUninitialized: false
 }));
 
-// استفاده از Passport برای شناسایی کاربر
+
 app.use(passport.initialize());
 app.use(passport.session());
 
-// Middleware برای بررسی نقش کاربر
+
 function checkRole(role) {
   return (req, res, next) => {
     if (req.isAuthenticated()) {
       if (req.user.role === role) {
         return next();
       } else {
-        return res.status(403).send('Forbidden'); // دسترسی ممنوع برای کسانی که نقش صحیح را ندارند
+        return res.status(403).send('Forbidden'); 
       }
     }
 
@@ -62,7 +62,7 @@ app.use(methodOverride('_method'));
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
 app.get('/', (req, res) => {
-  res.render('index.ejs', { user: req.user }); // همیشه صفحه اصلی نمایش داده می‌شود
+  res.render('index.ejs', { user: req.user }); 
 });
 
     
